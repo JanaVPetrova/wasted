@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: potracheno_development
+
+test:
+  <<: *default
+  database: potracheno_test
+
+production:
+  <<: *default
+  database: potracheno_production
+  username: potracheno
+  password: <%= ENV['POTRACHENO_DATABASE_PASSWORD'] %>

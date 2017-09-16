@@ -1,0 +1,26 @@
+- if @today.present?
+  .row
+    .col-md-4.text-center
+      h3 = t('.wasted', amount: @today.wasted)
+    .col-md-4.text-center
+      h3 = t('.limit', amount: @today.limit_amount.format)
+    .col-md-4.text-center
+      h3 = t('.saldo', amount: @today.saldo)
+  .row
+    .col-md-12
+      = form_for @expense, url: account_random_expenses_path do |f|
+        .fieldset.form-group
+          = f.collection_select :label_id, @labels, :id, :title, { include_blank: true }, { class: 'form-control' }
+          = f.text_field :amount_cents, class: 'form-control', placeholder: 100
+          = f.text_field :amount_currency, class: 'form-control', placeholder: current_user.default_currency, disabled: true
+        = f.submit t('save'), class: 'btn btn-block btn-primary'
+
+  .row
+    .col-md-12
+      ul.list-group
+        - @random_expences.each do |expense|
+          li.list-group-item.list-group-item-danger = expense.prettify
+- else
+  .row
+    .col-md-12
+      h1 = t('.no_money')

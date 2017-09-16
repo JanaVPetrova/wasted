@@ -1,0 +1,2 @@
+class RandomExpenseLabel < Label
+end

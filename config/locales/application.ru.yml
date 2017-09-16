@@ -1,0 +1,21 @@
+ru:
+  wasted: Потрачено
+  save: Сохранить
+  expenses: Расходы
+  incomes: Доходы
+  users:
+    new:
+      name: Имя
+      email: Email
+      password: Пароль
+      password_confirmation: Подтверждение пароля
+      sign_in: Войти
+      sign_up: Зарегистрироваться
+    authenticate:
+      wrong_password: Неправильный пароль
+      no_user: Нет такого пользователя
+  sessions:
+    new:
+      sign_in: Войти
+      email: Email
+      password: Пароль

@@ -1,0 +1,15 @@
+- if @today.present?
+  .row
+    .col-md-12
+      = render 'form', expense: @expense, url: account_recurrent_expenses_path, method: :post, labels: @labels
+  .row
+    .col-md-12
+      ul.list-group
+        - @recurrent_expences.each do |expense|
+          li.list-group-item.list-group-item-danger
+            =  link_to expense.prettify, edit_account_recurrent_expense_path(expense)
+
+- else
+  .row
+    .col-md-12
+      h1 = t('.no_money')

@@ -1,0 +1,2 @@
+class RecurrentExpense < Expense
+end

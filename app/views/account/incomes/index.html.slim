@@ -1,0 +1,15 @@
+.row
+  .col-md-12
+    = form_for @income, url: account_incomes_path do |f|
+      .fieldset.form-group
+        = f.collection_select :label_id, @labels, :id, :title, { include_blank: true }, { class: 'form-control' }
+        = f.text_field :amount_cents, class: 'form-control', placeholder: 100
+        = f.text_field :amount_currency, class: 'form-control', placeholder: current_user.default_currency, disabled: true
+      = f.submit t('save'), class: 'btn btn-block btn-primary'
+br
+br
+.row
+  .col-md-12
+    ul.list-group
+      - @incomes.each do |income|
+        li.list-group-item.list-group-item-success = income.prettify

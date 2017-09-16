@@ -1,0 +1,32 @@
+en:
+  wasted: Wasted
+  save: Save
+  expenses: Expenses
+  incomes: Incomes
+  users:
+    new:
+      name: Name
+      email: Email
+      password: Password
+      password_confirmation: Password confirmation
+      sign_in: Sign in
+      sign_up: Sign up
+    authenticate:
+      wrong_password: Wrong password
+      no_user: No user with such email
+  sessions:
+    new:
+      sign_in: Sign in
+      email: Email
+      password: Password
+  account:
+    expenses:
+      index:
+        random_expenses: Random expenses
+        recurrent_expenses: Recurrent expenses
+    random_expenses:
+      index:
+        no_money: No money
+        limit: 'Limit: %{amount}'
+        wasted: 'Wasted: %{amount}'
+        saldo: 'Saldo: %{amount}'

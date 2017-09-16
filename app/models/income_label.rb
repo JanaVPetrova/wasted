@@ -1,0 +1,2 @@
+class IncomeLabel < Label
+end

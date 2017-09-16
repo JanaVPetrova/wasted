@@ -1,0 +1,6 @@
+= form_for :session, url: sessions_path do |f|
+  .fieldset.form-group
+    = f.text_field :email, class: 'form-control', placeholder: t('.email')
+  .fieldset.form-group
+    = f.text_field :password, class: 'form-control', placeholder: t('.password'), type: :password
+  = f.submit t('.sign_in'), class: 'btn btn-block btn-primary'

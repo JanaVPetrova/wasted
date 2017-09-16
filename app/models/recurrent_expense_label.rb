@@ -1,0 +1,2 @@
+class RecurrentExpenseLabel < Label
+end
