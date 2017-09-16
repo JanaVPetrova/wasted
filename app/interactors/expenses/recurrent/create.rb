@@ -1,7 +1,7 @@
 class Expenses::Recurrent::Create
   include Interactor
 
-  delegate :user, :amount_cents, :amount_currency, :label_id, to: :context
+  delegate :user, :params, to: :context
   delegate :expense, to: :context
 
   before { context.fail!(error: 'no money, no honey') if day.blank? }
@@ -19,13 +19,7 @@ class Expenses::Recurrent::Create
   private
 
   def create_expense
-    day.recurrent_expenses.create(
-      amount_cents: amount_cents,
-      amount_currency: currency,
-      user: user,
-      label_id: label_id,
-      spend_at: spend_at
-    )
+    day.recurrent_expenses.create(expense_params)
   end
 
   def day
@@ -33,7 +27,7 @@ class Expenses::Recurrent::Create
   end
 
   def currency
-    amount_currency || user.default_currency
+    params[:amount_currency] || user.default_currency
   end
 
   def spend_at
@@ -42,5 +36,13 @@ class Expenses::Recurrent::Create
 
   def update_daily_limits!
     Days::UpdateLimit.call(user: user, date: spend_at)
+  end
+
+  def expense_params
+    params.merge(
+      user: context.user,
+      spend_at: spend_at,
+      amount_currency: currency
+    )
   end
 end

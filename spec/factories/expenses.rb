@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :expense do
-    amount_cents { generate(:integer) * 100 }
+    amount_cents { generate(:integer) * 100 * 100 }
     spend_at { Time.current }
     day
     user

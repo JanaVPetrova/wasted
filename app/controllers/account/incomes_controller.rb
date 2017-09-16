@@ -9,7 +9,8 @@ class Account::IncomesController < Account::ApplicationController
 
   def create
     result = Incomes::Create.call(
-      income_params.merge(user: current_user)
+      user: current_user,
+      params: income_params
     )
 
     if result.success?

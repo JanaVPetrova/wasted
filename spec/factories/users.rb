@@ -10,5 +10,11 @@ FactoryGirl.define do
         create :day, user: user
       end
     end
+
+    trait :with_recurrent_expenses do
+      after(:create) do |user, evaluator|
+        create :recurrent_expense, user: user
+      end
+    end
   end
 end

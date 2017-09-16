@@ -1,7 +1,7 @@
 class Expenses::Random::Create
   include Interactor
 
-  delegate :user, :amount_cents, :amount_currency, :label_id, to: :context
+  delegate :user, :params, to: :context
   delegate :expense, to: :context
 
   before { context.fail!(error: 'no money, no honey') if day.blank? }
@@ -15,13 +15,7 @@ class Expenses::Random::Create
   private
 
   def create_expense
-    day.random_expenses.create(
-      amount_cents: amount_cents,
-      amount_currency: currency,
-      user: user,
-      label_id: label_id,
-      spend_at: spend_at
-    )
+    day.random_expenses.create(expense_params)
   end
 
   def day
@@ -29,10 +23,19 @@ class Expenses::Random::Create
   end
 
   def currency
-    amount_currency || user.default_currency
+    params[:amount_currency] || user.default_currency
   end
 
   def spend_at
     Time.current
+  end
+
+  def expense_params
+    params.merge(
+      user: context.user,
+      day: day,
+      spend_at: spend_at,
+      amount_currency: currency
+    )
   end
 end

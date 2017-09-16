@@ -1,0 +1,12 @@
+.row
+  .col-md-12
+    .text-center
+      = link_to t('.update'), sync_account_cards_path, method: :post, class: 'btn btn-primary'
+br
+.row
+  .col-md-12
+    ul.list-group
+      - @cards.each do |card|
+        li.list-group-item
+          = card.humanize
+          = link_to t('.update'), sync_account_card_transactions_path(card.id), method: :post, class: 'btn btn-xs btn-danger pull-right'

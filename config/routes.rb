@@ -8,6 +8,15 @@ Rails.application.routes.draw do
     resources :expenses, only: [:index]
     resources :random_expenses, only: [:index, :create, :update, :destroy]
     resources :recurrent_expenses, only: [:index, :edit, :create, :update, :destroy]
+    resources :cards, only: [:index] do
+      post :sync, on: :collection
+
+      scope module: :cards do
+        resources :transactions, only: [:index] do
+          post :sync, on: :collection
+        end
+      end
+    end
 
     root to: 'random_expenses#index'
   end

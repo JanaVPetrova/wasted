@@ -10,7 +10,8 @@ class Account::RandomExpensesController < Account::ApplicationController
 
   def create
     result = Expenses::Random::Create.call(
-      expense_params.merge(user: current_user)
+      user: current_user,
+      params: expense_params
     )
 
     if result.success?

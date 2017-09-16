@@ -19,6 +19,7 @@ gem 'i18n_generators'
 gem 'interactor'
 gem 'draper'
 gem 'wisper'
+gem 'httparty'
 
 group :development, :test do
   gem 'pry-byebug'

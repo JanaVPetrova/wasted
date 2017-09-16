@@ -3,6 +3,9 @@ ru:
   save: Сохранить
   expenses: Расходы
   incomes: Доходы
+  cards: Карты
+  ok: OK
+  fail: Все плохо
   users:
     new:
       name: Имя

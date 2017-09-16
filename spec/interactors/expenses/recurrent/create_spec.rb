@@ -1,9 +1,8 @@
-RSpec.describe Expenses::Random::Create do
+RSpec.describe Expenses::Recurrent::Create do
   let(:amount_currency) { 'RUB' }
   let(:amount_cents) { 10000 }
   let(:user) { create :user, :with_incomes }
-  let(:label) { create :random_expense_label }
-  let(:today) { Users::TodayQuery.call(user: user) }
+  let(:label) { create :recurrent_expense_label }
 
   subject do
     described_class.call(
@@ -16,7 +15,7 @@ RSpec.describe Expenses::Random::Create do
     )
   end
 
-  it 'creates random expense' do
-    expect { subject }.to change { today.random_expenses.count }.by 1
+  it 'creates recurrent expense' do
+    expect { subject }.to change { user.recurrent_expenses.count }.by 1
   end
 end

@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170916085300) do
+ActiveRecord::Schema.define(version: 20170916153111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cards", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "title"
+    t.string "external_id"
+    t.string "kind"
+    t.string "payment_system"
+    t.datetime "synced_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_cards_on_user_id"
+  end
 
   create_table "days", force: :cascade do |t|
     t.date "date"
@@ -74,6 +86,7 @@ ActiveRecord::Schema.define(version: 20170916085300) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "cards", "users"
   add_foreign_key "days", "users"
   add_foreign_key "expenses", "days"
   add_foreign_key "expenses", "labels"

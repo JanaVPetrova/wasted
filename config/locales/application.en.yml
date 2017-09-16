@@ -3,6 +3,9 @@ en:
   save: Save
   expenses: Expenses
   incomes: Incomes
+  cards: Cards
+  ok: OK
+  fail: Fail
   users:
     new:
       name: Name

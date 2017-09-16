@@ -12,16 +12,12 @@ module ApplicationHelper
   end
 
   def current_user
-    if signed_in?
-      User.find(session[:user_id])
-    else
-      nil
-    end
+    return unless signed_in?
+
+    User.find(session[:user_id])
   end
 
   def authenticate_user!
-    unless signed_in?
-      redirect_to root_path
-    end
+    redirect_to(root_path) unless signed_in?
   end
 end
