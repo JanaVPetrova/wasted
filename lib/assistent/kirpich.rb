@@ -33,16 +33,20 @@ class Assistent::Kirpich
   end
 
   def wants_to_say
-    buy_dollar
-    buy_euro
+    chance = rand(10)
 
-    LIMIT_EXCEEDED.sample if rand(10) < 1
+    if chance < 3
+      buy_euro
+    elsif chance >=3 && chance < 7
+      buy_dollar
+    else
+      LIMIT_EXCEEDED.sample if rand(10) < 5
+    end
   end
 
   private
 
   def buy_dollar
-    return if rand(10) < 5
     return if currency_data.blank?
 
     dollar = currency_data.detect { |data| data[:cur_char_code] == 'USD' }
@@ -51,7 +55,6 @@ class Assistent::Kirpich
   end
 
   def buy_euro
-    return if rand(10) < 5
     return if currency_data.blank?
 
     euro = currency_data.detect { |data| data[:cur_char_code] == 'EUR' }
