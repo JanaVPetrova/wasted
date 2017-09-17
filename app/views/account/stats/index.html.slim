@@ -15,12 +15,12 @@
 .row
   .col-md-12
     h2.text-center = t('.daily_limits')
-    = column_chart @days
+    = column_chart @days, colors: ['#528c4f']
 
 .row
   .col-md-12
     h2.text-center = t('.random_expenses_daily')
-    = column_chart @random_expenses_daily
+    = column_chart @random_expenses_daily, colors: ['#f06565']
 
 .row
   .col-md-12

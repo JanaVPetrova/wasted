@@ -42,7 +42,7 @@ class Assistent::Kirpich
   private
 
   def buy_dollar
-    return if rand(10) < 3
+    return if rand(10) < 5
     return if currency_data.blank?
 
     dollar = currency_data.detect { |data| data[:cur_char_code] == 'USD' }
@@ -51,7 +51,7 @@ class Assistent::Kirpich
   end
 
   def buy_euro
-    return if rand(10) < 3
+    return if rand(10) < 5
     return if currency_data.blank?
 
     euro = currency_data.detect { |data| data[:cur_char_code] == 'EUR' }
