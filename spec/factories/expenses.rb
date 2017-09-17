@@ -10,4 +10,8 @@ FactoryGirl.define do
   factory :recurrent_expense, parent: :expense do
     type 'RecurrentExpense'
   end
+
+  factory :random_expense, parent: :expense do
+    type 'RandomExpense'
+  end
 end

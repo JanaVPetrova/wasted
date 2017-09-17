@@ -20,6 +20,8 @@ gem 'interactor'
 gem 'draper'
 gem 'wisper'
 gem 'httparty'
+gem 'chartkick'
+gem 'geocoder'
 
 group :development, :test do
   gem 'pry-byebug'

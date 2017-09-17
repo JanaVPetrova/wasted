@@ -28,12 +28,20 @@ class Account::IncomesController < Account::ApplicationController
     end
   end
 
-  def update
+  def edit
     @income = current_user.incomes.find_by(id: params[:id])
+    @labels = current_user.income_labels
+  end
 
-    if @income.update(income_params)
+  def update
+    income = current_user.incomes.find_by(id: params[:id])
+    result = Incomes::Update.call(income: income, params: income_params)
+
+    if result.success?
       redirect_to account_incomes_path
     else
+      @income = result.income
+      @labels = current_user.income_labels
       render :edit
     end
   end

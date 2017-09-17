@@ -47,6 +47,7 @@ GEM
     bindex (0.5.0)
     builder (3.2.3)
     byebug (9.1.0)
+    chartkick (2.2.3)
     coderay (1.1.1)
     commonjs (0.2.7)
     concurrent-ruby (1.0.5)
@@ -95,6 +96,7 @@ GEM
       activesupport (>= 4.2)
       factory_girl (~> 4.0)
     ffi (1.9.18)
+    geocoder (1.4.4)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     httparty (0.15.6)
@@ -247,10 +249,12 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt
+  chartkick
   draper
   dry-validation
   factory_girl_rails
   factory_girl_sequences
+  geocoder
   httparty
   i18n_generators
   interactor

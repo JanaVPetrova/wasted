@@ -4,10 +4,11 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create]
 
   namespace :account do
-    resources :incomes, only: [:index, :create, :update, :destroy]
+    resources :incomes, only: [:index, :create, :edit, :update, :destroy]
     resources :expenses, only: [:index]
-    resources :random_expenses, only: [:index, :create, :update, :destroy]
-    resources :recurrent_expenses, only: [:index, :edit, :create, :update, :destroy]
+    resources :stats, only: [:index]
+    resources :random_expenses, only: [:index, :create, :edit, :update, :destroy]
+    resources :recurrent_expenses, only: [:index, :create, :edit, :update, :destroy]
     resources :cards, only: [:index] do
       post :sync, on: :collection
 

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  ASSISTENT_MODES = %i(kirpich).freeze
+
   has_secure_password
 
   has_many :cards

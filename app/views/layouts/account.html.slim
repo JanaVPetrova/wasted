@@ -7,6 +7,7 @@ html lang='en'
     title= content_for?(:title) ? yield(:title) : t('wasted')
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'https://www.gstatic.com/charts/loader.js'
     = javascript_include_tag 'application'
 
   body
@@ -22,6 +23,7 @@ html lang='en'
               li = link_to t('expenses'), account_expenses_path
               li = link_to t('incomes'), account_incomes_path
               li = link_to t('cards'), account_cards_path
+              li = link_to t('stats'), account_stats_path
 
     .container
       .row

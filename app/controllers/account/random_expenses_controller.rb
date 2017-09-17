@@ -30,7 +30,25 @@ class Account::RandomExpensesController < Account::ApplicationController
     end
   end
 
+  def edit
+    @expense = current_user.random_expenses.find(params[:id])
+    @labels = current_user.random_expense_labels
+  end
+
   def update
+    @expense = current_user.random_expenses.find(params[:id])
+    result = Expenses::Random::Update.call(expense: @expense, params: expense_params)
+
+    if result.success?
+      redirect_to account_random_expenses_path
+    else
+      @expense = result.expense
+      @labels = current_user.random_expense_labels
+
+      flash[:error] = @expense.errors.full_messages.join("\n")
+
+      render :edit
+    end
   end
 
   def destroy

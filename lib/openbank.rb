@@ -48,9 +48,37 @@ class Openbank
     end
   end
 
+  def nearest_atm_address(latitude, longitude)
+    path = '/geocoding/1.0.0/getNearATM'
+    response = self.class.post(
+      path,
+      body: nearest_atm_body(latitude, longitude),
+      headers: {
+        'Content-Type': 'text/xml',
+        'Accept': 'text/xml'
+      }
+    )
+
+    if response.success?
+      response.parsed_response['getNearATMResponse']['return']['poiList']['formattedAddress']
+    else
+      ''
+    end
+  end
+
   private
 
   def normalize(data)
     data.map { |card_data| Hash[card_data.map { |k, v| [k.underscore.to_sym, v] }] }
+  end
+
+  def nearest_atm_body(latitude, longitude)
+    '<?xml version="1.0"?>' +
+    "<getNearATM>" +
+      "<coordinates>" +
+        "<latitude>#{latitude}</latitude>" +
+        "<longitude>#{longitude}</longitude>" +
+      "</coordinates>" +
+    "</getNearATM>"
   end
 end

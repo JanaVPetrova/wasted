@@ -1,6 +1,6 @@
 class Account::Cards::TransactionsController < Account::Cards::ApplicationController
   def sync
-    result = Cards::Transactions::Sync.call(card: current_card)
+    result = ::Cards::Transactions::Sync.call(card: current_card)
 
     if result.success?
       flash[:success] = t('ok')

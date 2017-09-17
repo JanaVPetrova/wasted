@@ -1,0 +1,8 @@
+.row
+  .col-md-12
+    h2.text-center = t('.random_expenses')
+    = column_chart @random_expenses_by_label
+
+  .col-md-12
+    h2.text-center = t('.recurrent_expenses')
+    = column_chart @recurrent_expenses_by_label

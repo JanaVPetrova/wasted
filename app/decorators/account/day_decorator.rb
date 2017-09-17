@@ -7,7 +7,7 @@ class Account::DayDecorator < Draper::Decorator
 
   def wasted
     if object.random_expenses.any?
-      object.random_expenses.sum(&:amount).format
+      object.random_expenses.sum(&:amount)
     else
       Money.new(0, object.user.default_currency)
     end
