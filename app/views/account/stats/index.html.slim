@@ -5,6 +5,15 @@
 
 .row
   .col-md-12
+    h2.text-center
+      = current_user.incomes.sum(&:amount).format
+      |/
+      = current_user.recurrent_expenses.sum(&:amount).format
+      |/
+      = current_user.random_expenses.sum(&:amount).format
+
+.row
+  .col-md-12
     h2.text-center = t('.daily_limits')
     = column_chart @days
 

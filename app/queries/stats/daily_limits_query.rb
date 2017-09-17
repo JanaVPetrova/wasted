@@ -10,7 +10,7 @@ class Stats::DailyLimitsQuery
   end
 
   def call
-    user.days.where(date: current_month).each_with_object({}) do |day, memo|
+    user.days.where(date: current_month).order(date: :asc).each_with_object({}) do |day, memo|
       memo[day.date] = day.limit_amount_cents / day.limit_amount.currency.subunit_to_unit
     end
   end

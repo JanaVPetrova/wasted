@@ -10,7 +10,7 @@ class Stats::DailyRandomExpensesQuery
   end
 
   def call
-    user.days.where(date: current_month).each_with_object({}) do |day, memo|
+    user.days.where(date: current_month).order(date: :asc).each_with_object({}) do |day, memo|
       amount = if day.random_expenses.any?
         day.random_expenses.sum(&:amount)
       else
