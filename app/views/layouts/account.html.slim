@@ -17,13 +17,14 @@ html lang='en'
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          = link_to t('.wasted'), root_path, class: 'navbar-brand'
+          = link_to t('wasted'), root_path, class: 'navbar-brand'
           .navbar-collapse.collapse.navbar-responsive-collapse
             ul.nav.navbar-nav
               li = link_to t('expenses'), account_expenses_path
               li = link_to t('incomes'), account_incomes_path
               li = link_to t('cards'), account_cards_path
               li = link_to t('stats'), account_stats_path
+              li = link_to t('profile'), account_profile_path
 
     .container
       .row

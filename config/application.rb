@@ -12,5 +12,6 @@ module Potracheno
     config.autoload_paths << "#{Rails.root}/lib"
     config.autoload_paths << "#{Rails.root}/app/interactors"
     config.autoload_paths << "#{Rails.root}/app/queries"
+    config.i18n.default_locale = :ru
   end
 end

@@ -1,13 +1,9 @@
 class Account::StatsController < Account::ApplicationController
   def index
-    @days = Users::MonthsQuery.call(user: current_user)
-    @random_expenses_by_label = current_user.random_expenses.each_with_object({}) do |expense, memo|
-      memo[expense.label.title] ||= 0
-      memo[expense.label.title] += expense.amount_cents / expense.amount.currency.subunit_to_unit
-    end
-    @recurrent_expenses_by_label = current_user.recurrent_expenses.each_with_object({}) do |expense, memo|
-      memo[expense.label.title] ||= 0
-      memo[expense.label.title] += expense.amount_cents / expense.amount.currency.subunit_to_unit
-    end
+    @assistent_message = Assistent.new(type: current_user.assistent).wants_to_say
+    @days = Stats::DailyLimitsQuery.call(user: current_user)
+    @random_expenses_daily = Stats::DailyRandomExpensesQuery.call(user: current_user)
+    @random_expenses_by_label = Stats::GroupedRandomExpensesQuery.call(user: current_user)
+    @recurrent_expenses_by_label = Stats::GroupedRecurrentExpensesQuery.call(user: current_user)
   end
 end

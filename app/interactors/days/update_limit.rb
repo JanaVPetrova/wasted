@@ -6,20 +6,30 @@ class Days::UpdateLimit
   before { context.date = context.date.to_date }
 
   def call
-    days.update_all(
-      limit_amount_cents: daily_limit.cents,
-      limit_amount_currency: daily_limit.currency.iso_code,
-    )
+    update_limits
   end
 
   private
 
-  def days
-    month.each do |day|
-      user.days.where(date: day).first_or_create!
+  def update_limits
+    month.each.with_index do |date, index|
+      yesterdays_amount = if index == 0
+        Money.new(0, daily_limit.currency.iso_code)
+      else
+        yesterday = user.days.where(date: date - 1.day).first_or_create!
+        yesterday.limit_amount - yesterday.random_expenses.sum(&:amount)
+      end
+
+      today = user.days.where(date: date).first_or_create!
+      amount = daily_limit + yesterdays_amount
+      update_daily_limit(today, amount)
     end
 
     user.days.where(date: month)
+  end
+
+  def update_daily_limit(day, amount)
+    day.update!(limit_amount: amount)
   end
 
   def incomes

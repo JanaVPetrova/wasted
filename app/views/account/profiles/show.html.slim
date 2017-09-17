@@ -1,0 +1,4 @@
+= form_for current_user, url: account_profile_path, method: :patch do |f|
+  .fieldset.form-group
+    = f.select :assistent, User::ASSISTENT_MODES, { include_blank: true }, { class: 'form-control' }
+  = f.submit t('save'), class: 'btn btn-block btn-primary'

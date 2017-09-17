@@ -16,8 +16,6 @@ class Openbank
           payment_system: raw_card['CardPaymentSystem']
         }
       end
-    else
-      nil
     end
   end
 
@@ -43,8 +41,6 @@ class Openbank
           }
         end
       end
-    else
-      nil
     end
   end
 
@@ -63,6 +59,15 @@ class Openbank
       response.parsed_response['getNearATMResponse']['return']['poiList']['formattedAddress']
     else
       ''
+    end
+  end
+
+  def currency
+    path = '/getrates/1.0.0/rates/cash'
+    response = self.class.get(path)
+
+    if response.success?
+      normalize(response.parsed_response['rates'])
     end
   end
 

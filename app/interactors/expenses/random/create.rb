@@ -10,6 +10,8 @@ class Expenses::Random::Create
     context.expense = create_expense
 
     context.fail! if expense.errors.any?
+
+    update_daily_limits!
   end
 
   private
@@ -27,7 +29,7 @@ class Expenses::Random::Create
   end
 
   def spend_at
-    Time.current
+    context.params[:spend_at] || Time.current
   end
 
   def expense_params
@@ -37,5 +39,9 @@ class Expenses::Random::Create
       spend_at: spend_at,
       amount_currency: currency
     )
+  end
+
+  def update_daily_limits!
+    Days::UpdateLimit.call(user: user, date: spend_at)
   end
 end

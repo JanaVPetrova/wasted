@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create]
 
   namespace :account do
+    resource :profile, only: [:show, :update]
     resources :incomes, only: [:index, :create, :edit, :update, :destroy]
     resources :expenses, only: [:index]
     resources :stats, only: [:index]

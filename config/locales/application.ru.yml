@@ -4,6 +4,9 @@ ru:
   expenses: Расходы
   incomes: Доходы
   cards: Карты
+  stats: Статистика
+  profile: Профиль
+  update: Обновить
   ok: OK
   fail: Все плохо
   users:
@@ -22,3 +25,20 @@ ru:
       sign_in: Войти
       email: Email
       password: Пароль
+  account:
+    expenses:
+      index:
+        random_expenses: Случайные расходы
+        recurrent_expenses: Постоянные расходы
+    random_expenses:
+      index:
+        no_money: Нет доходов
+        limit: 'Лимит: %{amount}'
+        wasted: 'Потрачено: %{amount}'
+        saldo: 'Сальдо: %{amount}'
+    stats:
+      index:
+        daily_limits: Лимит по дням
+        random_expenses: Случайные расходы
+        random_expenses_daily: Случайные расходы по дням
+        recurrent_expenses: Постоянные расходы

@@ -1,8 +1,23 @@
+- if @assistent_message.present?
+  .row
+    .col-md-12
+      .well = @assistent_message
+
+.row
+  .col-md-12
+    h2.text-center = t('.daily_limits')
+    = column_chart @days
+
+.row
+  .col-md-12
+    h2.text-center = t('.random_expenses_daily')
+    = column_chart @random_expenses_daily
+
 .row
   .col-md-12
     h2.text-center = t('.random_expenses')
     = column_chart @random_expenses_by_label
-
+.row
   .col-md-12
     h2.text-center = t('.recurrent_expenses')
     = column_chart @recurrent_expenses_by_label

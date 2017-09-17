@@ -4,7 +4,7 @@ class Account::CardsController < Account::ApplicationController
   end
 
   def sync
-    result = Cards::Sync.call(user: current_user)
+    result = ::Cards::Sync.call(user: current_user)
 
     if result.success?
       flash[:success] = t('ok')
