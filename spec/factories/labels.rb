@@ -3,6 +3,7 @@ FactoryGirl.define do
     title { generate :string }
     type 'IncomeLabel'
     user
+    category
   end
 
   factory :random_expense_label, parent: :income_label do

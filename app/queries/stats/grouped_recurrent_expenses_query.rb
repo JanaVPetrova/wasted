@@ -10,9 +10,9 @@ class Stats::GroupedRecurrentExpensesQuery
   end
 
   def call
-    user.recurrent_expenses.where(day_id: days.ids).each_with_object({}) do |expense, memo|
-      memo[expense.label.title] ||= 0
-      memo[expense.label.title] += expense.amount_cents / expense.amount.currency.subunit_to_unit
+    user.recurrent_expenses.includes(label: :category).where(day_id: days.ids).each_with_object({}) do |expense, memo|
+      memo[expense.label.category.title] ||= 0
+      memo[expense.label.category.title] += expense.amount_cents / expense.amount.currency.subunit_to_unit
     end
   end
 

@@ -10,17 +10,21 @@ class Stats::DailyRandomExpensesQuery
   end
 
   def call
-    user.days.where(date: current_month).order(date: :asc).each_with_object({}) do |day, memo|
-      amount = if day.random_expenses.any?
-        day.random_expenses.sum(&:amount)
-      else
-        Money.new(0, day.limit_amount_currency)
-      end
+    days.each_with_object({}) do |day, memo|
+      amount = make_money(day.random_expenses.sum(&:amount), day)
       memo[day.date] = amount.cents / amount.currency.subunit_to_unit
     end
   end
 
   private
+
+  def days
+    @days ||= user.days.includes(:random_expenses).where(date: current_month).order(date: :asc)
+  end
+
+  def make_money(amount, day)
+    amount.kind_of?(Money) ? amount : Money.new(amount, day.limit_amount_currency)
+  end
 
   def current_month
     (Date.today.beginning_of_month..Date.today.end_of_month)

@@ -8,7 +8,7 @@
       "/Users/vencarbon/programming/pets/potracheno/app/helpers/application_helper.rb": [
         1,
         1,
-        20,
+        21,
         null,
         null,
         1,
@@ -16,17 +16,17 @@
         null,
         null,
         1,
-        55,
+        57,
         null,
         null,
         1,
+        38,
+        null,
         37,
         null,
-        36,
-        null,
         null,
         1,
-        18,
+        19,
         null,
         null
       ],
@@ -73,7 +73,7 @@
       "/Users/vencarbon/programming/pets/potracheno/app/controllers/account/cards_controller.rb": [
         1,
         1,
-        1,
+        2,
         null,
         null,
         1,
@@ -444,7 +444,7 @@
         1,
         null,
         1,
-        5,
+        7,
         null,
         null,
         1,
@@ -463,6 +463,12 @@
         null,
         1,
         1,
+        1,
+        0,
+        null,
+        1,
+        1,
+        null,
         null,
         null,
         1,
@@ -497,6 +503,12 @@
         null,
         1,
         1,
+        1,
+        0,
+        null,
+        1,
+        1,
+        null,
         null,
         1,
         null,
@@ -823,6 +835,12 @@
       "/Users/vencarbon/programming/pets/potracheno/app/models/label.rb": [
         1,
         1,
+        1,
+        null
+      ],
+      "/Users/vencarbon/programming/pets/potracheno/app/models/category.rb": [
+        1,
+        1,
         null
       ],
       "/Users/vencarbon/programming/pets/potracheno/app/models/recurrent_expense.rb": [
@@ -994,6 +1012,6 @@
         null
       ]
     },
-    "timestamp": 1505642261
+    "timestamp": 1505650783
   }
 }

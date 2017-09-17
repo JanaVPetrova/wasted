@@ -28,9 +28,7 @@ RSpec.describe Cards::Transactions::Sync do
   subject { described_class.call(card: card, client: client) }
 
   before do
-    user.recurrent_expense_labels.create(
-      title: 'банкомат ФК Открытие'
-    )
+    create :recurrent_expense_label, user: user, title: 'банкомат ФК Открытие'
   end
 
   it 'updates user expenses and incomes' do

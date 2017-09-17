@@ -42,7 +42,13 @@ class Cards::Transactions::Sync
   end
 
   def random_expense_label(transaction)
-    user.random_expense_labels.where(title: transaction[:title]).first_or_create
+    label = user.random_expense_labels.where(title: transaction[:title]).first
+    if label.present?
+      label
+    else
+      category = Category.create(title: transaction[:title])
+      user.random_expense_labels.create!(title: transaction[:title], category: category)
+    end
   end
 
   def recurrent_expense_label(transaction)
@@ -76,7 +82,13 @@ class Cards::Transactions::Sync
   end
 
   def create_income(transaction)
-    label = user.income_labels.where(title: transaction[:title]).first_or_create
+    label = user.income_labels.where(title: transaction[:title]).first
+    if label.present?
+      label
+    else
+      category = Category.create(title: transaction[:title])
+      label = user.income_labels.create!(title: transaction[:title], category: category)
+    end
 
     Incomes::Create.call(
       user: card.user,
